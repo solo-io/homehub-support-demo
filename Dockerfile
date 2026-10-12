@@ -1,5 +1,5 @@
 FROM python:3.12-alpine
-LABEL org.opencontainers.image.source="https://github.com/danehans/homehub-support-demo" \
+LABEL org.opencontainers.image.source="https://github.com/solo-io/homehub-support-demo" \
       org.opencontainers.image.licenses="Apache-2.0"
 WORKDIR /app
 COPY server.py LICENSE NOTICE ./
