@@ -8,7 +8,7 @@ credentials or external dependencies. It uses Python's standard library.
 
 ```sh
 docker run --rm --name homehub -p 127.0.0.1:8080:8080 \
-  --read-only ghcr.io/solo-io/homehub-support-demo:0.1.2
+  --read-only ghcr.io/solo-io/homehub-support-demo:latest
 ```
 
 ```sh
@@ -36,14 +36,21 @@ docker build -t homehub-support-demo:local .
 
 ## Publish
 
-GitHub Actions tests the service, builds an image, and tests the running
-container. Pushes to `main` publish `latest` and a commit tag to GHCR. Release
-tags such as `v0.1.2` publish version tags such as `0.1.2`. Published
-images support Linux amd64 and arm64 and link to this repository's package.
+GitHub Actions tests the service and running container, then publishes images
+when a commit on `main` changes `server.py`, `Dockerfile`, another image input,
+or the publishing workflow. Every published build gets both `latest` and
+`sha-<short-commit>` tags. Images support Linux amd64 and arm64. Pull-request
+builds run tests without publishing. New main builds cancel older unfinished
+runs so an older build cannot replace `latest` after a newer build.
 
 ```sh
-git tag -a v0.1.2 -m 'Release 0.1.2'
-git push danehans v0.1.2
+docker pull ghcr.io/solo-io/homehub-support-demo:latest
+```
+
+Use the commit tag shown in the package for a reproducible deployment:
+
+```sh
+docker pull ghcr.io/solo-io/homehub-support-demo:sha-bfe7277
 ```
 
 The workflow uses `GITHUB_TOKEN` with `packages: write`; no additional registry
