@@ -1,0 +1,5 @@
+HomeHub Support Demo
+
+The initial server was adapted from the agentgateway response-cache example:
+https://github.com/agentgateway/agentgateway/pull/3594
+Licensed under the Apache License, Version 2.0.
