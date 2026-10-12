@@ -81,9 +81,11 @@ class ServerTest(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError) as caught:
             self.complete("HomeHub", stream=True)
         self.assertEqual(caught.exception.code, 400)
+        caught.exception.close()
         self.assertEqual(self.get("/stats"), before)
 
     def test_unknown_path(self):
         with self.assertRaises(urllib.error.HTTPError) as caught:
             self.get("/missing")
         self.assertEqual(caught.exception.code, 404)
+        caught.exception.close()

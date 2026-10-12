@@ -2,7 +2,7 @@ FROM python:3.12-alpine
 LABEL org.opencontainers.image.source="https://github.com/danehans/homehub-support-demo" \
       org.opencontainers.image.licenses="Apache-2.0"
 WORKDIR /app
-COPY server.py .
+COPY server.py LICENSE NOTICE ./
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 USER 65532:65532
 EXPOSE 8080

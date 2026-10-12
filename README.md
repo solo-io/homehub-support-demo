@@ -8,7 +8,7 @@ credentials or external dependencies. It uses Python's standard library.
 
 ```sh
 docker run --rm --name homehub -p 127.0.0.1:8080:8080 \
-  --read-only ghcr.io/danehans/homehub-support-demo:0.1.0
+  --read-only ghcr.io/danehans/homehub-support-demo:0.1.1
 ```
 
 ```sh
@@ -38,12 +38,12 @@ docker build -t homehub-support-demo:local .
 
 GitHub Actions tests the service, builds an image, and tests the running
 container. Pushes to `main` publish `latest` and a commit tag to GHCR. Release
-tags such as `v0.1.0` publish version tags such as `0.1.0`. Published
+tags such as `v0.1.1` publish version tags such as `0.1.1`. Published
 images support Linux amd64 and arm64 and link to this repository's package.
 
 ```sh
-git tag -a v0.1.0 -m 'Release 0.1.0'
-git push danehans v0.1.0
+git tag -a v0.1.1 -m 'Release 0.1.1'
+git push danehans v0.1.1
 ```
 
 The workflow uses `GITHUB_TOKEN` with `packages: write`; no additional registry
